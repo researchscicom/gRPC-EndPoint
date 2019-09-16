@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package reservations.v1;
+
+// Creates separate .java files for message and service
+// instead of creating them inside the class defined by
+// java_outer_classname
+option java_multiple_files = true;
+
+// Class that will contain descriptor
+option java_outer_classname = "ReservationServiceProto";
+
+// The package where the generated classes will reside
+option java_package = "com.grpc.reserve";
+
+// required to add annotations to the rpc calls
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service ReservationService {
+
+    rpc CreateReservation(CreateReservationRequest) returns (Reservation) {
+        option(google.api.http) = {
+            post: "/v1/reservations"
+            body: "reservation"
+        };
+    }
+
+    rpc GetReservation(GetReservationRequest) returns (Reservation) {
+        // {id} is mapped into the GetReservationRequest.id field!
+        option (google.api.http) = {
+            get: "/v1/reservations/{id}"
+        };
+    }
+}
+
+message Reservation {
+    string id = 1;
+    string title = 2;
+    string venue = 3;
+    string room = 4;
+}
+
+message CreateReservationRequest {
+    Reservation reservation = 2;
+}
+
+message CreateReservationResponse {
+    Reservation reservation = 1;
+}
+
+message GetReservationRequest {
+    string id = 1;
+}
