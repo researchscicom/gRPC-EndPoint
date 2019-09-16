@@ -21,7 +21,7 @@ class ReserveController extends ReservationServiceGrpc.ReservationServiceImplBas
     @Override
     public void createReservation(CreateReservationRequest request, StreamObserver<Reservation> responseObserver) {
         Reservation res = Reservation.newBuilder().setId(request.getReservation().getId())
-                .setRoom("W002").setVenue("UCSC").setTitle("Java").build();
+                .setRoom("MiniAudi").setVenue("UCSC").setTitle("Spring-Boot").build();
         Reservation createdReservation = reservationRepository.createReservation(res);
         responseObserver.onNext(createdReservation);
         responseObserver.onCompleted();
