@@ -14,7 +14,7 @@ fi
 
 # generate the reservation_service_definition.pb file that we can pass to envoy so that knows the grpc service
 # we want to expose
-protoc -I. -Ibuild/extracted-include-protos/main --include_imports \
+protoc -I. src/main/proto/google/api --include_imports \
                 --include_source_info \
                 --descriptor_set_out=reservation_service_definition.pb \
                 src/main/proto/reservation_service.proto
