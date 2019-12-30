@@ -19,14 +19,14 @@ import "google/protobuf/empty.proto";
 
 service ReservationService {
 
-    rpc CreateReservation(CreateReservationRequest) returns (Reservation) {
-        option(google.api.http) = {
+    rpc CreateReservation (CreateReservationRequest) returns (Reservation) {
+        option (google.api.http) = {
             post: "/v1/reservations"
             body: "reservation"
         };
     }
 
-    rpc GetReservation(GetReservationRequest) returns (Reservation) {
+    rpc GetReservation (GetReservationRequest) returns (Reservation) {
         // {id} is mapped into the GetReservationRequest.id field!
         option (google.api.http) = {
             get: "/v1/reservations/{id}"

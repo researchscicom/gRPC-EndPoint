@@ -1,1 +1,1 @@
-# gRPC-EndPoint
+# gRPC- Simple Reservation Example
